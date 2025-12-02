@@ -1,6 +1,8 @@
 # This is a Capstone Project Testing Repository
 ## Key Requirements
 
+![alt text](image.png)
+
 - **R1: Fish Detection**  
   The system must accurately detect and identify fish species from images.
 
@@ -39,16 +41,7 @@ Tests are categorized by level and scope:
 - **Unit Testing:** Validates individual modules in isolation
 - **Integration Testing:** Verifies interactions between components
 - **Functional Testing:** Confirms features meet requirements through end-to-end workflows
-- **Non-Functional Testing:** Assesses usability, performance, compatibility, and security
 - **System Testing:** Comprehensive evaluation of the entire application
-
-### Integration Strategy 
-
-The project follows an **MVP-first incremental integration** approach:
-
-1. **MVP Phase Testing** Core modules (fish detection, datasync, database, GPS tracking) were integrated and tested first to ensure foundational functionality.
-2. **Incremental Feature Testing** As new features were developed, targeted tests were added to validate their integration with existing systems.
-3. **Regression Testing** After each development cycle, regression tests ensured that new changes did not adversely affect existing functionalities.
 
 
 --- 
@@ -73,6 +66,14 @@ The project follows an **MVP-first incremental integration** approach:
 
 
 --- 
+
+### Integration Strategy 
+
+The project follows an **MVP-first incremental integration** approach:
+
+1. **MVP Phase Testing** Core modules (fish detection, datasync, database, GPS tracking) were integrated and tested first to ensure foundational functionality.
+2. **Incremental Feature Testing** As new features were developed, targeted tests were added to validate their integration with existing systems.
+3. **Regression Testing** After each development cycle, regression tests ensured that new changes did not adversely affect existing functionalities.
 
 ### Integration Testing Plans
 
@@ -109,10 +110,11 @@ Validates the interactions between modules using MVP-first incremental integrati
 - API responds with correct detection data.
 
 ### Phase 4: Local Only Database and Authentication
-**Modules Integrated:** Local Database, Authentication Module.
+**Modules Integrated:** Local Database, Authentication Module, Log History Module.
 
 **Test Scenario**
 - User signup/login and data storage locally.
+- Add and retrieve fishing logs.
 
 **Success Criteria**
 - User can authenticate and access local data.
@@ -161,7 +163,6 @@ The application provides secure user account control for fishers that allows the
 - **Boundary Testing:** Verifies input constraints like password length and character requirements to prevent invalid entries. This plan is to ensure the input fields are properly validated and properly implemented especially for our target audience.
 - **Usability Testing:** Ensures a smooth login/signup process with intuitive navigation and accessible error messages. Ensure that the user interface is user-friendly and easy to navigate for our target audience.
 
-- **Testing Approaches:** Test Firebase authentication methods (signup, login, logout, password reset) with mocked Firebase calls to verify correct handling of success and error states.
 
 
 #### 2. Fish Identification via Object Detection
@@ -206,28 +207,6 @@ The application gives basic analytics like fish caught by day and average size b
 - **CRUD Operations Testing:** Ensures that authenticated users can create, read, update, and delete their own records as per the defined security rules.
 
 
----
-
-### Non-Functional Testing
-
-#### 1. Usability Testing
-Evaluates the overall user experience, interface intuitiveness, and accessibility for the target audience of fishers.
-
-#### 2. Compatibility Testing
-
-Ensures the application functions correctly across different devices, operating systems, and screen sizes.
-
-**Testing Approaches:**
--  **Android Versions:** Test on various Android versions (e.g., Android 9.0 to the latest) to ensure compatibility.
--  **Device Types:** Test on different device screen (smartphones) to ensure responsive design and functionality.
-
-#### 3. Performance Testing
-Validates response times, resource usage, and application stability under various load conditions.
-
-#### 4. Security Testing
-Verifies data protection, secure communication, and resistance to common vulnerabilities.
-
----
 
 ### System Testing
 
@@ -253,18 +232,37 @@ Comprehensive end-to-end testing of the entire application to ensure all compone
   - Data is accurately recorded and displayed
 
 
+#### 2. Usability & Reliability Testing
+- **Testing Approaches:** Conduct a testing for No Cellular Network mode, Offline Mode, and general navigation to ensure ease of use for fishers.
 
+**Test Scenarios:**
+- **No Cellular Network Mode:** Verify application functionality when GPS signal is weak or unavailable.
+- **Offline Mode:** Test core features ( log history access,load mapping,gps points) without internet connectivity.
+- **GPS Availability:** Ensure GPS tracking works accurately in various cellphone states(close,idle,active).
 
-#### 2. Usability Testing
-
+**Success Criteria:**
+- Application remains functional and user-friendly in all tested scenarios excluding cloud sync and image recognition.
+- Navigation is intuitive for target users
 
 #### 3. Performance Testing
+- **Testing Approaches:** Measure application responsiveness during key operations such as image upload, fish detection, GPS tracking, and data synchronization.
 
-
-#### 4. Security Testing
-
+**Test Scenarios:**
+- **Image Upload and Detection:** Measure time taken from image upload to fish species identification.
+- **GPS Tracking:** Evaluate responsiveness of real-time location updates during active tracking.
+- **Data Synchronization:** Assess time taken to sync local data with cloud database under varying network conditions.
+**Success Criteria:**
+- All operations complete without lag or crashes
+- Battery consumption remains within acceptable limits during prolonged use (30 minutes of continuous GPS tracking)
 
 #### 5. Compatibility Testing 
+- **Testing Approaches:** Validate application functionality across a range of Android devices and Versions to ensure consistent user experience.
+
+- **Test Scenarios:**
+- **Device Variety:** Test on multiple Android devices with different screen sizes and hardware capabilities.
+- **OS Versions:** Test on various Android versions (e.g., Android 9.0 to the latest) to ensure compatibility.
+**Success Criteria:**
+- Application functions correctly on all tested devices and OS versions without UI glitches or performance issues.
 
 
 #### 6. Regression Testing
@@ -275,11 +273,27 @@ Comprehensive end-to-end testing of the entire application to ensure all compone
   - **Medium:** Moderate changes such as updates to business logic or integration points, which may impact multiple features. These require more thorough testing across related modules.
   - **Hard:** Major changes or architectural updates that could affect core workflows or data integrity. These undergo comprehensive regression testing across the entire system to ensure overall stability.
 
+**Success Criteria:**
+- No previously functioning features are broken after updates.
+- The BUGS is resolved if not isolated further testing is required.
+
 #### 7. Priority Testing
 
 - **Testing Approaches:** Critical functionalities that directly impact user experience and data integrity, such as user authentication, fish species detection, and GPS tracking, are prioritized for testing. These features undergo more frequent and rigorous testing cycles to ensure they meet high standards of reliability and performance. 
 
+**Success Criteria:**
+- Critical features consistently perform as expected under various conditions.
+- Any issues falls under priority features are Leveled High and addressed with proper team meetings.
 
+
+#### 8. Security Testing
+- **Testing Approaches:** Ensure that all data authetication, access, and data trasmission are secure and protected against unauthorized access.
+
+**Test Scenarios:**
+- **Authentication Security:** Verify that only authenticated users can access their data.
+
+
+---
 
 ### Document and Code Review
 
